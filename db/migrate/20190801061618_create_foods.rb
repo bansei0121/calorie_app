@@ -7,3 +7,5 @@ class CreateFoods < ActiveRecord::Migration[5.2]
     end
   end
 end
+
+# Food.create(name: '', calorie: )

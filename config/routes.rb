@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'sessions/new'
-  get 'calculation/index'
   root 'pages#index'
   
   get    '/login',  to: 'sessions#new'
@@ -8,5 +7,9 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   
   resources :users
-  
+  resources :calculation do
+    collection do
+      post :search
+    end
+  end
 end
