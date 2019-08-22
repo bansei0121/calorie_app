@@ -1,25 +1,34 @@
 <div class=container>
-  <h1 class= "calorie-title">食べ物を検索する</h1>
-  <p>検索</p>
-  <%= form_tag(search_calculation_index_path, :method => 'post') do %>
-    <%= text_field_tag :search %>
-    <%= submit_tag 'Search', :name => nil %>
-  <% end %>
-  
-  <p id="total_calorie">トータルカロリー : <%= @total_calorie %></p>
-  <div class="foods">
-    <table>
-      <tr>
-        <th>名前</th>
-        <th>カロリー(kcal)</th>
-      </tr>
-      <% @foods.each do |food| %>
-        <tr>
-          <td><%= food.name %></td>
-          <td class="calorie"><%= food.calorie %></td>
-          <td class="select"><input type="checkbox"></td>
-        </tr>
-      <% end %>
-    </table>
+  <div class="calculation">
+    <h2 class="cal-title">カロリー計算機</h2>
+    <h5 class="cal-sub-title">チェックボックスを選択すると、トータルカロリーに反映されます</h5>
+    <%= form_tag(search_calculation_index_path, :method => 'post') do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag 'Search', :name => nil %>
+    <% end %>
+    
+    <p class="total_calorie">トータルカロリー : <%= @total_calorie %></p>
+    <input class="total" type="button" value="計算" onclick="clickBtn1()"/>
+    
+    <div class="foods">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>カロリー(kcal)</th>
+            <th>選択</th>
+          </tr>
+        </thead>
+        <% @foods.each do |food| %>
+          <tr>
+            <td class="menu"><%= food.id %></td>
+            <td class="menu"><%= food.name %></td>
+            <td class="menu calorie"><%= food.calorie %></td>
+            <td class="menu select"><input type="checkbox" class="selecter_#{food.id}" value=food.calorie></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>
